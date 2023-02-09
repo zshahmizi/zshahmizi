@@ -29,7 +29,7 @@ class App{
 		this.scene = new THREE.Scene();
         this.scene.add( this.dolly );
         
-		const ambient = new THREE.HemisphereLight(0xFFB000, 0xFFE800, 0.8);
+		const ambient = new THREE.HemisphereLight(0xFFB000, 0xFFE800, 0.8); //Changed HTML color codes
 		this.scene.add(ambient);
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -251,7 +251,7 @@ class App{
         dir.negate();
 		this.raycaster.set(pos, dir);
 		
-        let blocked = true;
+        let blocked = false;
 		
 		let intersect = this.raycaster.intersectObject(this.proxy);
         if (intersect.length>0){
