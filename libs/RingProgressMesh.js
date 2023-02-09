@@ -75,7 +75,7 @@ class RingProgressMesh extends Mesh{
     set progress( value ){
         if ( value<0 ) value = 0;
         if ( value>1 ) value = 1;
-        this.material.uniforms.uProgress.value = 1 - value;
+        this.material.uniforms.uProgress.value = 1 - value; //reverse progress bar
     }
     
     get progress(){
