@@ -29,7 +29,7 @@ class App{
 		this.scene = new THREE.Scene();
         this.scene.add( this.dolly );
         
-		const ambient = new THREE.HemisphereLight(0xFFE800, 0xFFB000, 0.8); //Changed HTML color codes
+		const ambient = new THREE.HemisphereLight(0x009EFF, 0xFFB000, 0.8); //Changed HTML color codes
 		this.scene.add(ambient);
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
