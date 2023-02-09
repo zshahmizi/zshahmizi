@@ -162,27 +162,6 @@ class App{
         const self = this;
         
         const timeoutId = setTimeout( connectionTimeout, 2000 );
-
-        let yaw = 0;
-        let pitch = 0;
-        let controller;
-
-        if (navigator.xr) {
-        navigator.xr.isSessionSupported('immersive-vr').then((supported) => {
-            if (supported) {
-            navigator.xr.requestSession('immersive-vr').then((session) => {
-                session.addEventListener('inputsourceschange', () => {
-                const inputs = session.inputSources;
-                for (let i = 0; i < inputs.length; i++) {
-                    if (inputs[i].targetRayMode === 'tracked-pointer') {
-                    controller = inputs[i].gamepad;
-                    }
-                }
-                });
-            });
-            }
-        });
-        }
         
         function onSelectStart( event ) {
         
@@ -227,14 +206,7 @@ class App{
         this.ui = new CanvasUI( content, config );
         this.scene.add( this.ui.mesh );
         
-        this.renderer.setAnimationLoop( this.render.bind(this), {
-            if (controller) {
-              yaw -= controller.axes[0] * 0.01;
-              pitch -= controller.axes[1] * 0.01;
-              
-              camera.rotation.set(pitch, yaw, 0, 'YXZ');
-            }
-        });
+        this.renderer.setAnimationLoop( this.render.bind(this) );
     }
     
     buildControllers( parent = this.scene ){
@@ -266,7 +238,7 @@ class App{
         if (this.proxy === undefined) return;
         
         const wallLimit = 1.3;
-        const speed = 10;
+        const speed = 2;
 		let pos = this.dolly.position.clone();
         pos.y += 1;
         
