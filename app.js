@@ -29,7 +29,7 @@ class App{
 		this.scene = new THREE.Scene();
         this.scene.add( this.dolly );
         
-		const ambient = new THREE.HemisphereLight(0xFFFFFF, 0xAAAAAA, 0.8);
+		const ambient = new THREE.HemisphereLight(0xFFB000, 0xFFE800, 0.8);
 		this.scene.add(ambient);
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -237,8 +237,8 @@ class App{
     moveDolly(dt){
         if (this.proxy === undefined) return;
         
-        const wallLimit = 0.5;
-        const speed = 6;
+        const wallLimit = 0.5; //reduce barrier limit
+        const speed = 6; //increase dolly speed
 		let pos = this.dolly.position.clone();
         pos.y += 1;
         
@@ -251,7 +251,7 @@ class App{
         dir.negate();
 		this.raycaster.set(pos, dir);
 		
-        let blocked = false;
+        let blocked = true;
 		
 		let intersect = this.raycaster.intersectObject(this.proxy);
         if (intersect.length>0){
